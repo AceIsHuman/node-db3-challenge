@@ -3,6 +3,7 @@ const db = require('../knexfile.js');
 module.exports = {
   find,
   findById,
+  findSteps,
   add,
   update,
   remove
@@ -20,6 +21,14 @@ async function findById(id) {
     return null;
   }
 };
+
+async function findSteps(scheme_id) {
+  return db('steps as stp')
+    .where({ scheme_id })
+    .join('schemes as sch', 'stp.scheme_id', 'sch.id')
+    .select('stp.id', 'sch.scheme_name', 'stp.step_number', 'stp.instructions')
+    .orderBy('stp.step_number');
+}
 
 async function add(scheme) {
   const id = await db('schemes').insert(scheme);
