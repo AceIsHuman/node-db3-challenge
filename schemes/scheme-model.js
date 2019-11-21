@@ -1,4 +1,4 @@
-const db = require('../knexfile.js');
+const db = require('../data/dbConfig');
 
 module.exports = {
   find,
@@ -13,6 +13,7 @@ function find() {
   return db('schemes');
 };
 
+// Should I just be returning the promise?
 async function findById(id) {
   try { 
     const scheme = await db('schemes').where({ id }).first();
