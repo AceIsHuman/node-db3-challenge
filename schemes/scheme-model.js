@@ -12,8 +12,13 @@ function find() {
   return db('schemes');
 };
 
-function findById(id) {
-  return db('schemes').where({ id }).first();
+async function findById(id) {
+  try { 
+    const scheme = await db('schemes').where({ id }).first();
+    return scheme;
+  } catch (err) {
+    return null;
+  }
 };
 
 async function add(scheme) {
