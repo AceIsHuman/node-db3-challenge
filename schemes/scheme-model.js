@@ -31,7 +31,7 @@ async function findSteps(scheme_id) {
 }
 
 async function add(scheme) {
-  const id = await db('schemes').insert(scheme);
+  const [id] = await db('schemes').insert(scheme);
   return findById(id);
 };
 
