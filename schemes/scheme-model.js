@@ -36,7 +36,8 @@ async function add(scheme) {
 };
 
 async function update(changes, id) {
-  return db('schemes').where({ id }).update(changes);
+  const success = await db('schemes').where({ id }).update(changes);
+  return findById(id);
 };
 
 function remove(id) {
