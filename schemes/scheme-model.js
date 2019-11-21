@@ -6,19 +6,25 @@ module.exports = {
   add,
   update,
   remove
-}
+};
 
-function find() {
-}
+async function find() {
+  return db('schemes');
+};
 
 function findById(id) {
-}
+  return db('schemes').where({ id }).first();
+};
 
-function add(user) {
-}
+async function add(scheme) {
+  const id = await db('schemes').insert(scheme);
+  return findById(id);
+};
 
-function update(changes, id) {
-}
+async function update(changes, id) {
+  return db('schemes').where({ id }).update(changes);
+};
 
 function remove(id) {
-}
+  return db('schemes').where({ id }).del();
+};
