@@ -8,7 +8,7 @@ module.exports = {
   remove
 };
 
-async function find() {
+function find() {
   return db('schemes');
 };
 
